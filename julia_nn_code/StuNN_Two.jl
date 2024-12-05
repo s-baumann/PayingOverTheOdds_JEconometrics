@@ -90,15 +90,6 @@ module StuNN_Two
         append!(dd, put_in_dd(test_error_report, all_metrics, :test) )
         append!(dd, put_in_dd(all_error_report, all_metrics, :all) )
         CSV.write(csv_location, dd)
-        #long_dd = stack(dd)
-        #long_dd = long_dd[in.(long_dd[:,:variable], Ref(metrics) ),:]
-        #plt = Gadfly.plot(long_dd, ygroup=:variable, Geom.subplot_grid(layer( x = :iterate , y = :value, color=:name, Geom.point),
-        #           layer( x = :iterate , y = :value, color=:name, Geom.line), free_y_axis =true),
-        #           Guide.xlabel("Iterates"), Guide.ylabel(""), style(key_position = :bottom),
-        #           Guide.ColorKey(title = ""), Guide.Title(" "))
-        #plt
-        #img = PNG(plot_location, 30cm, 30cm)
-        #draw(img, plt)
         return dd
     end
 
@@ -150,14 +141,12 @@ module StuNN_Two
             name = colnames[i]
             if (name in allnames) == false error("We have input the name ", name, " which is not in the RobustZWindsoriser.") end
             if name in dont_preprocess
-                #println("We are not preprocessing $name.")
                 continue
             end
             mn = wind.robust_means[name]
             sd = wind.robust_sdevs[name]
             bot = mn + sd * wind.z_levels[1]
             top = mn + sd * wind.z_levels[2]
-            #println("For var $name Of length $(length(x2[i,:])) have $(sum(x2[i,:] .> top)) too high and $(sum(x2[i,:] .< bot)) too low")
             x2[i,:] = clamp.(x2[i,:], bot, top)
         end
         return x2
@@ -345,17 +334,11 @@ module StuNN_Two
         return son.func(son.chain, xx)'
     end
     function (son::SmallOverNN)(x::Matrix)
-        #if with_preprocessing
-        #    this_x = preprocess(son.preprocessors, x, son.x)
-        #    return son.func(son.chain, this_x)'
-        #else
-            return son.func(son.chain, x)'
-        #end
+        return son.func(son.chain, x)'
     end
 
     function get_errors(son::SmallOverNN, x, actual, dumb_predictions)
         preds = son(x)
-        #preds = Array{eltype(preds),2}(preds)
         return get_errors(Vector(actual[1,:]), preds, dumb_predictions)
     end
 
@@ -389,8 +372,7 @@ module StuNN_Two
     end
     function train!(son::SmallOverNN, optim, training_loader, training_set_x::Matrix, training_set_y::Matrix, test_set_x::Matrix, test_set_y::Matrix, niters::Integer, loss_func::Function, loss_for_early_stopping::Symbol, early_stopping_patience::Real)
         errors1, errors2, errors_all = basic_progress_report(son, 0, (training_set_x, training_set_y), (test_set_x, test_set_y); ReportingSigFig = 5)
-        #optim = Flux.setup(Flux.Adam(0.1), son) 
-        
+
         best_loss_so_far = Inf
         periods_since_best_loss = 0
 
@@ -405,7 +387,6 @@ module StuNN_Two
                 loss, grads = Flux.withgradient(son) do m
                     # Evaluate model and loss inside gradient context:
                     y_hat = m(x)
-                # println("yhat first five are $(y_hat[1:5])")
                     loss_func(y_hat,  Vector(y[1,:]) )
                 end
                 Flux.update!(optim, son, grads[1])
