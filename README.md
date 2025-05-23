@@ -10,15 +10,15 @@ Klymak, M. , Baumann, S. (2025). Paying over the odds at the end of the fiscal y
 
  ``` 
 @article{KLYMAK2025105903,
-title = {Paying over the odds at the end of the fiscal year. Evidence from Ukraine},
-journal = {Journal of Econometrics},
-volume = {249},
-pages = {105903},
-year = {2025},
-issn = {0304-4076},
-doi = {https://doi.org/10.1016/j.jeconom.2024.105903},
-url = {https://www.sciencedirect.com/science/article/pii/S0304407624002549},
-author = {Margaryta Klymak and Stuart Baumann},
+  title = {Paying over the odds at the end of the fiscal year. Evidence from Ukraine},
+  journal = {Journal of Econometrics},
+  volume = {249},
+  pages = {105903},
+  year = {2025},
+  issn = {0304-4076},
+  doi = {https://doi.org/10.1016/j.jeconom.2024.105903},
+  url = {https://www.sciencedirect.com/science/article/pii/S0304407624002549},
+  author = {Margaryta Klymak and Stuart Baumann},
 }
  ```
 
