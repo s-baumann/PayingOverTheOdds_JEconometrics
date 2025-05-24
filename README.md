@@ -18,7 +18,6 @@ Klymak, M. and Baumann, S. (2025), "Paying over the odds at the end of the fisca
   year = {2025},
   issn = {0304-4076},
   doi = {https://doi.org/10.1016/j.jeconom.2024.105903},
-  url = {https://www.sciencedirect.com/science/article/pii/S0304407624002549},
   author = {Margaryta Klymak and Stuart Baumann},
 }
  ```
