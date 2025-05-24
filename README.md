@@ -5,8 +5,9 @@ The paper can be found at
 https://doi.org/10.1016/j.jeconom.2024.105903
 
 For citation the details are:
-
-Klymak, M. , Baumann, S. (2025). Paying over the odds at the end of the fiscal year. Evidence from Ukraine, Journal of Econometrics (249). 
+ ``` 
+Klymak, M. and Baumann, S. (2025), "Paying over the odds at the end of the fiscal year. Evidence from Ukraine", Journal of Econometrics 249, 105903
+ ``` 
 
  ``` 
 @article{KLYMAK2025105903,
